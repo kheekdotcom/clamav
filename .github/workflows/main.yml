@@ -6,8 +6,10 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Publish to Docker Repository
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: HurricanKai/Publish-Docker-Github-Action@master
+      if: contains(github.ref, 'refs/tags/v')
       with:
-        name: ispeakcode/docker-githubaction
+        name: kheekdotcom/clamav-docker
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
